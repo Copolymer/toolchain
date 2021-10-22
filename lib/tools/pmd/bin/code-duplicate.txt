@@ -1,0 +1,230 @@
+Found a 8 line (72 tokens) duplication in the following files: 
+Starting at line 59 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/ViewController.m
+Starting at line 68 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/ViewController.m
+
+    [self.showLabel setText:@""];
+    [self.showLabel setText:@""];
+    [self.showLabel setText:@""];
+    [self.showLabel setText:@""];
+    [self.showLabel setText:@""];
+    [self.showLabel setText:@""];
+    [self.showLabel setText:@""];
+    [self.showLabel setText:@""];
+=====================================================================
+Found a 7 line (63 tokens) duplication in the following files: 
+Starting at line 59 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/ViewController.m
+Starting at line 69 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/ViewController.m
+
+    [self.showLabel setText:@""];
+    [self.showLabel setText:@""];
+    [self.showLabel setText:@""];
+    [self.showLabel setText:@""];
+    [self.showLabel setText:@""];
+    [self.showLabel setText:@""];
+    [self.showLabel setText:@""];
+=====================================================================
+Found a 5 line (56 tokens) duplication in the following files: 
+Starting at line 502 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/SGLogSalvager/SGLogSalvager.m
+Starting at line 520 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/SGLogSalvager/SGLogSalvager.m
+
+    [uploadRequest setHTTPMethod:@"POST"];
+    
+    [[[NSURLSession sharedSession] dataTaskWithRequest:uploadRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (!error && data) {
+            NSDictionary *resp = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingFragmentsAllowed error:nil];
+=====================================================================
+Found a 6 line (54 tokens) duplication in the following files: 
+Starting at line 59 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/ViewController.m
+Starting at line 70 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/ViewController.m
+
+    [self.showLabel setText:@""];
+    [self.showLabel setText:@""];
+    [self.showLabel setText:@""];
+    [self.showLabel setText:@""];
+    [self.showLabel setText:@""];
+    [self.showLabel setText:@""];
+=====================================================================
+Found a 9 line (47 tokens) duplication in the following files: 
+Starting at line 507 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/SGLogSalvager/SGLogSalvager.m
+Starting at line 524 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/SGLogSalvager/SGLogSalvager.m
+
+            NSLog(@"resp:%@", resp);
+            if (resp &&
+                [resp isKindOfClass:NSDictionary.class] &&
+                [[(NSDictionary *)resp valueForKey:@"code"] intValue] == 200) {
+                uploadSuccess = YES;
+            }
+        }
+        dispatch_semaphore_signal(uploadSema);
+    }] resume];
+=====================================================================
+Found a 11 line (46 tokens) duplication in the following files: 
+Starting at line 623 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/SGLogSalvager/SGLogSalvager.m
+Starting at line 141 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/ViewController.m
+
+    if (!param) {
+        return nil;
+    }
+    
+    CFStringRef encodeParaCf = CFURLCreateStringByAddingPercentEscapes(NULL, (__bridge CFStringRef)param, NULL, CFSTR("!*'();:@&=+$,/?%#[]"), kCFStringEncodingUTF8);
+    
+    if (encodeParaCf == NULL) {
+        return nil;
+    }
+    
+    NSString *encodePara = (__bridge NSString *)(encodeParaCf);
+=====================================================================
+Found a 5 line (45 tokens) duplication in the following files: 
+Starting at line 59 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/ViewController.m
+Starting at line 71 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/ViewController.m
+
+    [self.showLabel setText:@""];
+    [self.showLabel setText:@""];
+    [self.showLabel setText:@""];
+    [self.showLabel setText:@""];
+    [self.showLabel setText:@""];
+=====================================================================
+Found a 7 line (43 tokens) duplication in the following files: 
+Starting at line 20 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/SGLogSalvager/SGSalvageLogFormat.m
+Starting at line 29 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/SGLogSalvager/SGSalvageLogFormat.m
+
+@implementation NSArray (SGLogSalvager)
+- (NSString *)salvageLogFormat
+{
+    NSData *data = [NSJSONSerialization dataWithJSONObject:self options:NSJSONWritingFragmentsAllowed error:nil];
+    return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+}
+@end
+=====================================================================
+Found a 9 line (43 tokens) duplication in the following files: 
+Starting at line 40 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/TYStatistics.m
+Starting at line 51 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/TYStatistics.m
+
++ (float)usedSizeOfMemory {
+    task_vm_info_data_t taskInfo;
+    mach_msg_type_number_t infoCount = TASK_VM_INFO_COUNT;
+    kern_return_t kernReturn = task_info(mach_task_self(), TASK_VM_INFO_PURGEABLE, (task_info_t)&taskInfo, &infoCount);
+    
+    if (kernReturn != KERN_SUCCESS) {
+        return 0.0f;
+    }
+    return ((taskInfo.internal + taskInfo.compressed - taskInfo.purgeable_volatile_pmap) / (1024.0 * 1024.0));
+=====================================================================
+Found a 5 line (42 tokens) duplication in the following files: 
+Starting at line 15 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/BIDFileUtil.m
+Starting at line 24 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/BIDFileUtil.m
+
+    NSString * path = [NSString stringWithFormat:@"%@UserSimulateLog.txt", [BIDFileUtil getResultDir]];
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"HH:mm:ss"];
+    NSString * currentDateStr = [dateFormatter stringFromDate:[NSDate date]];
+    NSString * string = [NSString stringWithFormat:@"%@_%@\n", currentDateStr, log];
+=====================================================================
+Found a 7 line (38 tokens) duplication in the following files: 
+Starting at line 29 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/TYStatistics.m
+Starting at line 62 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/TYStatistics.m
+
++ (float)residentSizeOfMemory {
+    task_basic_info_data_t taskInfo;
+    mach_msg_type_number_t infoCount = TASK_BASIC_INFO_COUNT;
+    kern_return_t kernReturn = task_info(mach_task_self(), TASK_BASIC_INFO, (task_info_t)&taskInfo, &infoCount);
+    
+    if (kernReturn != KERN_SUCCESS) {
+        return 0.0f;
+=====================================================================
+Found a 1 line (36 tokens) duplication in the following files: 
+Starting at line 54 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/SGLogSalvager/SGLogSalvager.h
+Starting at line 112 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/SGLogSalvager/SGLogSalvager.m
+
+- (void)log:(id<SGSalvageLogFormat>)log withBusinessID:(SGLogSalvagerBusinessID)businessID andAttacher:(nullable LOG_SALVAGER_ATTACHER)attacher andCustomAttachments:(nullable SGLogSalvagerCustomAttachmentFunc)customAttachmentFunc, ... NS_REQUIRES_NIL_TERMINATION;
+=====================================================================
+Found a 4 line (36 tokens) duplication in the following files: 
+Starting at line 59 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/ViewController.m
+Starting at line 73 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/ViewController.m
+
+    [self.showLabel setText:@""];
+    [self.showLabel setText:@""];
+    [self.showLabel setText:@""];
+    [self.showLabel setText:@""];
+=====================================================================
+Found a 8 line (27 tokens) duplication in the following files: 
+Starting at line 38 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/SGLogSalvager/SGLogSalvager.h
+Starting at line 45 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/SGLogSalvager/SGLogSalvager.h
+
+@property (nonatomic, assign) BOOL logInConsole;
+
+/// 记录日志调用接口
+/// @param log 日志（目前仅支持NSArray，NSString，NSDictionary，开发者可扩展）
+/// @param businessID 业务ID
+/// @param attacher 拼接器（用于外部获取调用环境信息，
+/// 目前包括LOG_SALVAGER_FUNCTION_ATTACHER，LOG_SALVAGER_LINE_ATTACHER， LOG_SALVAGER_FILE_ATTACHER，LOG_SALVAGER_CONTEXT_ATTACHER四种）
+- (void)log:(id<SGSalvageLogFormat>)log withBusinessID:(SGLogSalvagerBusinessID)businessID andAttacher:(nullable LOG_SALVAGER_ATTACHER)attacher;
+=====================================================================
+Found a 4 line (27 tokens) duplication in the following files: 
+Starting at line 103 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/SGLogSalvager/SGLogSalvager.m
+Starting at line 109 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/SGLogSalvager/SGLogSalvager.m
+
+}
+
+
+- (void)log:(id<SGSalvageLogFormat>)log withBusinessID:(SGLogSalvagerBusinessID)businessID andAttacher:(nullable LOG_SALVAGER_ATTACHER)attacher
+=====================================================================
+Found a 3 line (27 tokens) duplication in the following files: 
+Starting at line 59 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/ViewController.m
+Starting at line 74 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/ViewController.m
+
+    [self.showLabel setText:@""];
+    [self.showLabel setText:@""];
+    [self.showLabel setText:@""];
+=====================================================================
+Found a 1 line (26 tokens) duplication in the following files: 
+Starting at line 45 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/SGLogSalvager/SGLogSalvager.h
+Starting at line 54 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/SGLogSalvager/SGLogSalvager.h
+Starting at line 106 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/SGLogSalvager/SGLogSalvager.m
+Starting at line 112 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/SGLogSalvager/SGLogSalvager.m
+
+- (void)log:(id<SGSalvageLogFormat>)log withBusinessID:(SGLogSalvagerBusinessID)businessID andAttacher:(nullable LOG_SALVAGER_ATTACHER)attacher;
+=====================================================================
+Found a 6 line (26 tokens) duplication in the following files: 
+Starting at line 32 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/TYStatistics.m
+Starting at line 54 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/TYStatistics.m
+
+    kern_return_t kernReturn = task_info(mach_task_self(), TASK_BASIC_INFO, (task_info_t)&taskInfo, &infoCount);
+    
+    if (kernReturn != KERN_SUCCESS) {
+        return 0.0f;
+    }
+    return (taskInfo.resident_size / (1024.0 * 1024.0));
+=====================================================================
+Found a 5 line (25 tokens) duplication in the following files: 
+Starting at line 393 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/SGLogSalvager/SGLogSalvager.m
+Starting at line 403 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/SGLogSalvager/SGLogSalvager.m
+
+{
+    static NSString *dir = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        dir = [self directoryInDocumentsDirWithName:@"Logan/log"];
+=====================================================================
+Found a 6 line (24 tokens) duplication in the following files: 
+Starting at line 32 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/TYStatistics.m
+Starting at line 43 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/TYStatistics.m
+
+    kern_return_t kernReturn = task_info(mach_task_self(), TASK_BASIC_INFO, (task_info_t)&taskInfo, &infoCount);
+    
+    if (kernReturn != KERN_SUCCESS) {
+        return 0.0f;
+    }
+    return (taskInfo.resident_size / (1024.0 * 1024.0));
+=====================================================================
+Found a 6 line (23 tokens) duplication in the following files: 
+Starting at line 48 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/BIDFileUtil.m
+Starting at line 59 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/BIDFileUtil.m
+Starting at line 65 of /Users/aesthetic/Documents/需求项目/静态代码检测/Infer/DEMO/DEMO/BIDFileUtil.m
+
+    NSString *path=[NSString stringWithFormat:@"%@Scripts/",[self getDocumentsDir]];
+    [BIDFileUtil createFolderIfNotExist:path];
+    return path;
+}
+
++ (NSString *)getTaskFilePath{
