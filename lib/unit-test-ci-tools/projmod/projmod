@@ -1,0 +1,82 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+require_relative 'modifier'
+
+module Mod
+    VERSION = '0.0.1'
+    module Command
+        NONE    =  ''
+        REMOVE_DEP  =  'remove-dep'
+        ADD_DEP     =  'add-dep'
+        LIST_DEP    =  'list-dep'
+        SHOW        =  'show'
+        ADD_EXT     =  'add-ext'
+        REMOVE_EXT  =  'remove-ext'
+    end
+end
+
+command = Mod::Command::NONE
+inputs = {
+  project_path:       '',
+  target_name:        '',
+  dependency_targets: []
+}
+
+OptionParser.new do |opts|
+    opts.banner = "Usage: projmod [options]"
+
+    opts.on('-a', '--action ACTION', '指定操作add/remove/list/show') do |action|
+      case action
+      when 'add-dep'
+        command = Mod::Command::ADD_DEP
+      when 'remove-dep'
+        command = Mod::Command::REMOVE_DEP
+      when 'list-dep'
+        command = Mod::Command::LIST_DEP
+      when 'show'
+        command = Mod::Command::SHOW
+      when 'add-ext'
+        command = Mod::Command::ADD_EXT
+      when 'remove-ext'
+        command = Mod::Command::REMOVE_EXT
+      else
+        command = Mod::Command::NONE
+      end
+    end
+
+    opts.on('-p', '--project PATH', '指定project的路径') do |path|
+      inputs[:project_path] = path
+    end
+
+    opts.on("-t", '--target TARGET_NAME', '指定工程的target名称') do |target|
+      inputs[:target_name] = target
+    end
+
+    opts.on('-d', '--dependency DEP', '指定依赖的target名称') do |dep|
+      inputs[:dependency_targets] << dep
+    end
+    opts.on_tail('-h', '--help', 'Show this message') { puts opts; exit }
+    opts.on_tail("-v", "--version", "Show version") { puts Mod::VERSION; exit }
+    opts.parse!
+end
+
+modifier = Modifier.new(inputs[:project_path])
+case command
+when Mod::Command::ADD_DEP
+  modifier.add_dependencies(inputs[:target_name], inputs[:dependency_targets])
+when Mod::Command::REMOVE_DEP
+  modifier.delete_dependencies(inputs[:target_name], inputs[:dependency_targets])
+when Mod::Command::LIST_DEP
+  modifier.list_dependencies(inputs[:target_name])
+when Mod::Command::SHOW
+  modifier.show_targets
+when Mod::Command::ADD_EXT
+  modifier.add_dependencies(inputs[:target_name], inputs[:dependency_targets])
+  modifier.add_embed_app_extensions_phase(inputs[:target_name], inputs[:dependency_targets])
+when Mod::Command::REMOVE_EXT
+  modifier.delete_dependencies(inputs[:target_name], inputs[:dependency_targets])
+  modifier.delete_embed_app_extensions_phase(inputs[:target_name], inputs[:dependency_targets])
+else
+  puts "请指定--action remove/add/list"
+end
